@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { join } = require('path')
 
 module.exports = {
-    mode: 'production',
+    mode: 'development',
     entry: "./src/main.js",  // 入口
     output: {
         path: join(__dirname, "lib"),  // 出口路径
@@ -42,6 +42,17 @@ module.exports = {
                     filename: "images/[hash:4][ext]"
                 }
             },
+            {
+                test: /\.(eot|svg|ttf|woff|woff2|)$/i,
+                type: "asset/resource",
+                generator: {
+                    filename: "fonts/[hash:4][ext]"
+                }
+            },
+            {
+                test: /\.js$/i,
+                use: ["babel-loader"]
+            }
         ],
     },
 }
