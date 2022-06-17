@@ -2,6 +2,8 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { join } = require('path')
 
+const { VueLoaderPlugin } = require('vue-loader')
+
 module.exports = {
     mode: 'development',
     entry: "./src/main.js",  // 入口
@@ -14,7 +16,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             // 自定义打包的html模版,用绝对路径
             template: join(__dirname, 'public/main.html')
-        })
+        }), new VueLoaderPlugin()
     ],
     devServer: {
         open: true,
@@ -52,7 +54,12 @@ module.exports = {
             {
                 test: /\.js$/i,
                 use: ["babel-loader"]
+            },
+            {
+                test: /\.vue$/,
+                loader: 'vue-loader'
             }
         ],
     },
+   
 }

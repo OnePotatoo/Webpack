@@ -23,7 +23,9 @@ document.body.append(png)
 // 引入字体图标文件
 import './assets/fonts/iconfont.css'
 
-const fn = () => { 
+const fn = () => {
     console.log('海绵宝宝');
 }
 console.log(fn);
+
+import "./app.vue"
