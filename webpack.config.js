@@ -1,5 +1,7 @@
 // 引入自动生成 html 的插件
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+
 const { join } = require('path')
 
 const { VueLoaderPlugin } = require('vue-loader')
@@ -16,7 +18,9 @@ module.exports = {
         new HtmlWebpackPlugin({
             // 自定义打包的html模版,用绝对路径
             template: join(__dirname, 'public/main.html')
-        }), new VueLoaderPlugin()
+        }),
+        new VueLoaderPlugin(),
+        new MiniCssExtractPlugin()
     ],
     devServer: {
         open: true,
@@ -26,11 +30,13 @@ module.exports = {
         rules: [
             {
                 test: /\.css$/i,
-                use: ["style-loader", "css-loader"]
+                use: ["style-loader", "css-loader"],
+                use: [MiniCssExtractPlugin.loader, "css-loader"],
             },
             {
                 test: /\.less$/i,
                 use: ["style-loader", "css-loader", "less-loader"]
+
             },
             {
                 test: /\.(png|gif)$/i,
@@ -58,8 +64,8 @@ module.exports = {
             {
                 test: /\.vue$/,
                 loader: 'vue-loader'
-            }
+            },
         ],
     },
-   
+
 }

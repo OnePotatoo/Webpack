@@ -23,6 +23,7 @@
     "server": "webpack serve"
   },
   "dependencies": {
+    "mini-css-extract-plugin": "^2.6.1",
     "vue": "^3.2.37"
   }
 }
